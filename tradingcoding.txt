@@ -24,7 +24,29 @@ Max Drawdown: (RED)
 Avg Trade:
 151 861.47 USDT
 0.47%
+--------------------------------------------------------------------------------------------------------------------------------------------
+2023,3,1 - Current
 
+Net Profit:
+1 882.24 USDT
+3.76%
+
+Total Closed Trades:
+32
+
+Percent Profitable:
+71.88%
+
+Profit Factor:
+1.896
+
+Max Drawdown:
+1 658.03 USDT 3.19%
+
+Avg Trade:
+58.82 USDT
+0.72%
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 1. Learn how to write Stop Loss properly.
 2. Think about stop loss strategy.
