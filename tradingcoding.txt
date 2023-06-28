@@ -1,5 +1,31 @@
 Trading & Coding-
 
-Impulse MACD indicator
+Next Steps :-
+
+2020,1,1 - Current 
+
+Net Profit:
+19 590 130.00 USDT
+19 590.13%
+
+Total Closed Trades:
+129
+
+Percent Profitable:
+64.34%
+
+Profit Factor:
+1.329
+
+Max Drawdown: (RED)
+17 835 250.00 USDT
+12 456.16%
+
+Avg Trade:
+151 861.47 USDT
+0.47%
 
 
+1. Learn how to write Stop Loss properly.
+2. Think about stop loss strategy.
+3. Implement.
