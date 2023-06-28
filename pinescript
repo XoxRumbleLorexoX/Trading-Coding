@@ -23,29 +23,43 @@ sh=md-sb
 MA200 = ema(close, 200)
 MA50 = ema(close, 50)
 MA25 = ema(close, 25)
+MA34 = ema(close, 34)
+MA26 = ema(close, 26)
+MA30 = ema(close, 30)
 mdc=src>mi?src>hi?lime:green:src<lo?red:orange
 plot(0, color=black, linewidth=2, title="MidLine")
 plot(md, color=blue, linewidth=2, title="ImpulseMACD", style=line)
 plot(sh, color=red, linewidth=2, title="ImpulseHisto", style=columns)
 plot(sb, color=orange, linewidth=2, title="ImpulseMACDCDSignal")
-plot(MA200, color=black, title="MA 200", linewidth=2)
-
+plot(MA34, color=black, title="MA 200", linewidth=2)
+plot(MA26, color=gray, title="MA 200", linewidth=2)
+// plot(MA30, color=black, title="MA 200", linewidth=2)
 
 
 ebc=input(false, title="Enable bar colors")
 barcolor(ebc?mdc:na)
 
-start = timestamp(2015, 1, 1, 0, 0)
+start = timestamp(2020, 1, 1, 0, 0)
 
-long = md > sb and MA200 < close and md < 0
-short = md < sb and MA200 > close and md > 0
+long = md > sb and MA34 < close and md < 0
+short = md < sb and MA26 > close and md > 0
+
+// long = md > sb and MA34 < close and md < 0
+// short = md < sb and MA26 > close and md > 0
+
+
+// long = md > sb  and md < 0
+// short = md < sb and md > 0
 
 if time >= start
 	strategy.entry("Long", strategy.long, 1000.0, when = long)
 	strategy.entry("Short", strategy.short, 1000.0, when = short)
+	strategy.close("Long", when=short)
+	strategy.close("Short", when=long)
+	// strategy.exit("Long", stop=MA34*0.9)
+	// strategy.exit("Short", stop=MA26*1.1)
 
-strategy.close("Long", when=short)
-strategy.close("Short", when=long)
+
 
 
 
