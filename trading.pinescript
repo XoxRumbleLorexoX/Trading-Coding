@@ -39,7 +39,7 @@ plot(MA26, color=gray, title="MA 200", linewidth=2)
 ebc=input(false, title="Enable bar colors")
 barcolor(ebc?mdc:na)
 
-start = timestamp(2020, 1, 1, 0, 0)
+start = timestamp(2023, 3, 1, 0, 0)
 
 long = md > sb and MA34 < close and md < 0
 short = md < sb and MA26 > close and md > 0
@@ -52,8 +52,8 @@ short = md < sb and MA26 > close and md > 0
 // short = md < sb and md > 0
 
 if time >= start
-	strategy.entry("Long", strategy.long, 1000.0, when = long)
-	strategy.entry("Short", strategy.short, 1000.0, when = short)
+	strategy.entry("Long", strategy.long, 0.3, when = long)
+	strategy.entry("Short", strategy.short, 0.3, when = short)
 	strategy.close("Long", when=short)
 	strategy.close("Short", when=long)
 	// strategy.exit("Long", stop=MA34*0.9)
