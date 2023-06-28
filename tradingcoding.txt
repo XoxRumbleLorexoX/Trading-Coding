@@ -51,3 +51,6 @@ Avg Trade:
 1. Learn how to write Stop Loss properly.
 2. Think about stop loss strategy.
 3. Implement.
+4. Learn leveraging
+5. Learn how to profit from 125X platforms such as Binance & others. (Manage risk management).
+6. Connect to the Binance API/MT5.
