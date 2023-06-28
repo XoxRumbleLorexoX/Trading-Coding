@@ -1,0 +1,87 @@
+//@version=2
+strategy("Impulse MACD [LazyBear]", shorttitle="IMACD_LB", overlay=true)
+lengthMA = input(34)
+lengthSignal = input(9)
+calc_smma(src, len) =>
+	smma=na(smma[1]) ? sma(src, len) : (smma[1] * (len - 1) + src) / len
+	smma
+
+calc_zlema(src, length) =>
+	ema1=ema(src, length)
+	ema2=ema(ema1, length)
+	d=ema1-ema2
+	ema1+d
+
+src=hlc3
+hi=calc_smma(high, lengthMA)
+lo=calc_smma(low, lengthMA)
+mi=calc_zlema(src, lengthMA) 
+
+md=(mi>hi)? (mi-hi) : (mi<lo) ? (mi - lo) : 0
+sb=sma(md, lengthSignal)
+sh=md-sb
+MA200 = ema(close, 200)
+MA50 = ema(close, 50)
+MA25 = ema(close, 25)
+mdc=src>mi?src>hi?lime:green:src<lo?red:orange
+plot(0, color=black, linewidth=2, title="MidLine")
+plot(md, color=blue, linewidth=2, title="ImpulseMACD", style=line)
+plot(sh, color=red, linewidth=2, title="ImpulseHisto", style=columns)
+plot(sb, color=orange, linewidth=2, title="ImpulseMACDCDSignal")
+plot(MA200, color=black, title="MA 200", linewidth=2)
+
+
+
+ebc=input(false, title="Enable bar colors")
+barcolor(ebc?mdc:na)
+
+start = timestamp(2015, 1, 1, 0, 0)
+
+long = md > sb and MA200 < close and md < 0
+short = md < sb and MA200 > close and md > 0
+
+if time >= start
+	strategy.entry("Long", strategy.long, 1000.0, when = long)
+	strategy.entry("Short", strategy.short, 1000.0, when = short)
+
+strategy.close("Long", when=short)
+strategy.close("Short", when=long)
+
+
+
+
+// indicator("Simple MACD", overlay=true)
+
+// // Input parameters
+// fastLength = input(12, title="Fast Length")
+// slowLength = input(26, title="Slow Length")
+// signalSmoothing = input(9, title="Signal Smoothing")
+
+// //200 day MA
+// // MA = input(200, title="200 Day") //x
+// // MA200 = ta.ema(MA)
+// MA200 = ta.ema(close, 200)
+
+
+// // Calculate MACD Line
+// macdLine = ta.ema(close, fastLength) - ta.ema(close, slowLength)
+
+// // Calculate Signal Line
+// signalLine = ta.ema(macdLine, signalSmoothing)
+
+// // Calculate Histogram
+// histogram = macdLine - signalLine
+
+// // Plot MACD Line
+// plot(MA200, color=color.black, title="MA 200")
+
+// // Plot MACD Line
+// plot(macdLine, color=color.blue, title="MACD Line")
+
+// // Plot Signal Line
+// plot(signalLine, color=color.red, title="Signal Line")
+
+// // Plot Histogram
+// plot(histogram, color=histogram >= 0 ? color.green : color.red, style=plot.style_histogram, title="Histogram")
+
+// hline(0, color=color.gray, linestyle=hline.style_solid, linewidth=2, title="Zero Line")
