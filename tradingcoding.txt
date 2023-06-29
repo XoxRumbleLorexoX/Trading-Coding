@@ -54,3 +54,4 @@ Avg Trade:
 4. Learn leveraging
 5. Learn how to profit from 125X platforms such as Binance & others. (Manage risk management).
 6. Connect to the Binance API/MT5.
+7. Trading volume-based discounts, and other factors.
